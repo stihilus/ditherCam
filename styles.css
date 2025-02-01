@@ -1,0 +1,238 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.app {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    overflow: hidden;
+}
+
+.camera-view {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+#camera {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: 1;
+}
+
+#output {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.controls {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.capture-btn {
+    margin: 0 30px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.capture-btn-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #fff;
+    transition: transform 0.2s;
+}
+
+.capture-btn:active .capture-btn-inner {
+    transform: scale(0.9);
+}
+
+.settings-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.settings-btn svg {
+    width: 30px;
+    height: 30px;
+    fill: #fff;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 20;
+}
+
+.modal.active {
+    display: block;
+}
+
+.modal-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 20px 20px 0 0;
+    font-family: 'DepartureMono', monospace;
+}
+
+.setting-group {
+    margin: 20px 0;
+}
+
+.setting-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #888;
+    font-family: 'DepartureMono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.setting-group select,
+.setting-group input[type="range"] {
+    width: 100%;
+    padding: 8px;
+    background: #333;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-family: 'DepartureMono', monospace;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.capture-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 15;
+}
+
+.capture-overlay canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Startup Animation */
+.startup-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DepartureMono', monospace;
+    color: #00ff00;
+}
+
+.startup-text p {
+    opacity: 0;
+    margin: 10px 0;
+    font-size: 14px;
+    text-align: center;
+    color: white;
+    animation: typewriter 1s steps(30, end) forwards;
+}
+
+.startup-text p:nth-child(1) { animation-delay: 0.2s; }
+.startup-text p:nth-child(2) { animation-delay: 0.7s; }
+.startup-text p:nth-child(3) { animation-delay: 1.2s; }
+.startup-text p:nth-child(4) { animation-delay: 1.7s; }
+
+@keyframes typewriter {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#randomBtn {
+    margin-right: auto;
+    margin-left: 30px;
+}
+
+#settingsBtn {
+    margin-left: auto;
+    margin-right: 30px;
+}
