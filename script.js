@@ -432,12 +432,35 @@ async function captureImage() {
     document.getElementById('saveCapture').onclick = async () => {
         try {
             const blob = await new Promise(resolve => captureCanvas.toBlob(resolve, 'image/png'));
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = `dithered_${Date.now()}.png`;
-            link.click();
-            URL.revokeObjectURL(url);
+            // Create file from blob
+            const file = new File([blob], `dithered_${Date.now()}.png`, { type: 'image/png' });
+            
+            // Check if Web Share API is available
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        files: [file],
+                        title: 'DitherCam Photo',
+                        text: 'Check out this photo from DitherCam!'
+                    });
+                } catch (err) {
+                    // Fallback to traditional download if share is cancelled or fails
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = file.name;
+                    link.click();
+                    URL.revokeObjectURL(url);
+                }
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = file.name;
+                link.click();
+                URL.revokeObjectURL(url);
+            }
         } catch (err) {
             console.error('Error saving image:', err);
             alert('Failed to save image');
