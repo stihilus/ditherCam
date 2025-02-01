@@ -55,7 +55,8 @@ body {
 
 .controls {
     position: absolute;
-    bottom: 30px;
+    bottom: env(safe-area-inset-bottom, 30px);
+    padding-bottom: max(30px, env(safe-area-inset-bottom, 30px));
     left: 0;
     right: 0;
     display: flex;
@@ -235,4 +236,16 @@ body {
 #settingsBtn {
     margin-left: auto;
     margin-right: 30px;
+}
+
+.capture-actions {
+    position: fixed;
+    bottom: env(safe-area-inset-bottom, 30px);
+    padding-bottom: max(30px, env(safe-area-inset-bottom, 30px));
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    z-index: 2001;
 }
