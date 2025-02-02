@@ -441,7 +441,7 @@ async function captureImage() {
                     await navigator.share({
                         files: [file],
                         title: 'DitherCam Photo',
-                        text: 'Check out this photo from DitherCam!\nTry it yourself: https://stihilus.github.io/ditherCam/'
+                        text: 'Try it yourself: https://bit.ly/ditherCam'
                     });
                 } catch (err) {
                     // Fallback to traditional download if share is cancelled or fails
