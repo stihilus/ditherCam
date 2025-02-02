@@ -55,8 +55,8 @@ body {
 
 .controls {
     position: absolute;
-    bottom: env(safe-area-inset-bottom, 30px);
-    padding-bottom: max(30px, env(safe-area-inset-bottom, 30px));
+    bottom: env(safe-area-inset-bottom, 80px);
+    padding-bottom: max(80px, env(safe-area-inset-bottom, 80px));
     left: 0;
     right: 0;
     display: flex;
